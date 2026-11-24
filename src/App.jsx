@@ -24,14 +24,24 @@ function Clock() {
   return <span>{time || '--:--'} <span className="clock-zone">IST</span></span>;
 }
 
+const navItems = [['home', '#top', 'Home'], ['about', '#about', 'About'], ['work', '#work', 'Projects'], ['experience', '#experience', 'Experience'], ['contact', '#contact', 'Contact']];
+
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState('home');
-  const items = [['home', '#top', 'Home'], ['about', '#about', 'About'], ['work', '#work', 'Projects'], ['research', '#research', 'Research'], ['contact', '#contact', 'Contact']];
+  useEffect(() => {
+    const sections = navItems.map(([key, selector]) => [key, document.querySelector(selector)]).filter(([, section]) => section);
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (visible) setActive(sections.find(([, section]) => section === visible.target)?.[0] ?? 'home');
+    }, { rootMargin: '-18% 0px -60% 0px', threshold: [0, 0.1, 0.35, 0.65] });
+    sections.forEach(([, section]) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
   const navigate = (key) => { setActive(key); setMenuOpen(false); };
   return <header className="topbar">
-    <a className="wordmark" href="#top" aria-label="Pushpakanti Duari, home" onClick={() => navigate('home')}><span className="wordmark-mark">P<span>.</span>D</span><span className="wordmark-caption">PERSONAL LAB / 01</span></a>
-    <nav className={menuOpen ? 'main-nav is-open' : 'main-nav'} aria-label="Main navigation">{items.map(([key, href, label]) => <a className={active === key ? 'is-active' : ''} href={href} key={key} onClick={() => navigate(key)}>{label}</a>)}</nav>
+    <a className="wordmark" href="#top" aria-label="Pushpakanti Duari, home" onClick={() => navigate('home')}><span className="wordmark-mark">P<span>.</span>D</span><span className="wordmark-caption">PUSHPAKANTI DUARI</span></a>
+    <nav className={menuOpen ? 'main-nav is-open' : 'main-nav'} aria-label="Main navigation">{navItems.map(([key, href, label]) => <a className={active === key ? 'is-active' : ''} href={href} key={key} onClick={() => navigate(key)}>{label}</a>)}</nav>
     <div className="nav-actions"><a className="nav-icon-link" href={links.github} target="_blank" rel="noreferrer" aria-label="GitHub"><ContactIcon type="github" /></a><a className="nav-icon-link" href={links.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><ContactIcon type="linkedin" /></a><a className="nav-contact" href="#contact" onClick={() => navigate('contact')}>CONTACT <Arrow diagonal /></a></div>
     <button className="nav-menu-toggle" type="button" aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'} aria-expanded={menuOpen} onClick={() => setMenuOpen((open) => !open)}><span /><span /></button>
   </header>;
@@ -76,7 +86,7 @@ function NeuralVisual() {
 function Hero() {
   return <section className="hero indexed" id="top" data-index="01" aria-labelledby="hero-title">
     <div className="hero-grid-mark" aria-hidden="true">0101<br />1010<br />0011<br />0100</div>
-    <div className="hero-kicker"><span>INDEPENDENT TECHNOLOGY BUILDER</span><span>BASED IN WEST BENGAL, INDIA</span></div>
+    <div className="hero-kicker"><span>BASED IN WEST BENGAL, INDIA</span></div>
     <div className="hero-main">
       <div className="hero-copy">
         <p className="hero-role"><span className="role-line" /> DATA SCIENCE <b>/</b> AI/ML <b>/</b> SOFTWARE ENGINEERING</p>
@@ -147,18 +157,18 @@ function VisionGraphic() {
 }
 
 const projects = [
-  { no: '01', name: 'FinMate Copilot', kind: 'AI FINANCE AGENT', context: 'GITHUB REPOSITORY', stack: ['FastAPI', 'MySQL', 'LangGraph', 'Groq API', 'Gemini API'], description: 'A personal finance platform for tracking income, expenses, budgets, savings goals, and generating reports. An AI agent turns the numbers into conversational guidance and useful insights.', href: 'https://github.com/pushpakanti/FinMate-Copilot-Your-AI-Financial-Assistant-Agent', art: FinanceGraphic },
-  { no: '02', name: 'SmartVision', kind: 'COMPUTER VISION / IMAGE SEARCH', context: 'GITHUB REPOSITORY', stack: ['Python', 'YOLOv11', 'OpenCV', 'Streamlit'], description: 'A real-time object detection and image-based search tool. Metadata filtering, bounding box visualization, and JSON/ZIP export make image analysis easier to manage.', href: 'https://github.com/pushpakanti/SmartVision-Object-Search-Application', art: VisionGraphic },
+  { no: '01', name: 'FinMate Copilot', kind: 'AI FINANCE AGENT', context: '', stack: ['FastAPI', 'MySQL', 'LangGraph', 'Groq API', 'Gemini API'], description: 'A personal finance platform for tracking income, expenses, budgets, savings goals, and generating reports. An AI agent turns the numbers into conversational guidance and useful insights.', href: 'https://github.com/pushpakanti/FinMate-Copilot-Your-AI-Financial-Assistant-Agent', live: 'https://ai-financial-assistant-qr33.vercel.app', art: FinanceGraphic },
+  { no: '02', name: 'SmartVision', kind: 'COMPUTER VISION / IMAGE SEARCH', context: '', stack: ['Python', 'YOLOv11', 'OpenCV', 'Streamlit'], description: 'A real-time object detection and image-based search tool. Metadata filtering, bounding box visualization, and JSON/ZIP export make image analysis easier to manage.', href: 'https://github.com/pushpakanti/SmartVision-Object-Search-Application', art: VisionGraphic },
 ];
 
 function Work() {
   return <section className="work section-pad reveal indexed" id="work" data-index="03" aria-labelledby="work-title">
-    <div className="work-top"><SectionHeading number="03" label="SELECTED BUILDS" id="work-title" title={<>Ideas into<br /><em>instruments.</em></>} /><p>Two systems from the lab: built around useful questions, shaped through data and software.</p></div>
+    <div className="work-top"><SectionHeading number="03" label="MY PROOF OF WORKS" id="work-title" title={<>Ideas into <em>products.</em></>} /></div>
     <div className="project-list">{projects.map((project) => {
       const Art = project.art;
       return <article className={`project project-${project.no}`} key={project.no}>
         <div className="project-visual-wrap"><a className="project-visual" href={project.href} target="_blank" rel="noreferrer" aria-label={`Open ${project.name} source on GitHub`}><Art /><span className="art-open">OPEN REPOSITORY <Arrow diagonal /></span></a></div>
-        <div className="project-details"><div className="project-overline"><span>{project.no} / {project.kind}</span><span>{project.context}</span></div><h3><a href={project.href} target="_blank" rel="noreferrer">{project.name}<Arrow diagonal /></a></h3><p>{project.description}</p><div className="tech-list" aria-label="Technologies">{project.stack.map((item) => <span key={item}>{item}</span>)}</div><a className="project-repo" href={project.href} target="_blank" rel="noreferrer">VIEW PROJECT SOURCE <Arrow diagonal /></a></div>
+        <div className="project-details"><div className="project-overline"><span>{project.no} / {project.kind}</span>{project.context && <span>{project.context}</span>}</div><h3><a href={project.href} target="_blank" rel="noreferrer">{project.name}<Arrow diagonal /></a></h3><p>{project.description}</p><div className="tech-list" aria-label="Technologies">{project.stack.map((item) => <span key={item}>{item}</span>)}</div><div className="project-actions"><a className="project-repo" href={project.href} target="_blank" rel="noreferrer">VIEW PROJECT SOURCE <Arrow diagonal /></a>{project.live && <a className="project-demo" href={project.live} target="_blank" rel="noreferrer">LIVE DEMO &#8599;</a>}</div></div>
       </article>;
     })}</div>
     <div className="more-work"><span>MORE EXPERIMENTS TO COME</span><span>OPEN SOURCE <i>·</i> ITERATIVE <i>·</i> MADE TO BE USED</span></div>
@@ -166,11 +176,14 @@ function Work() {
 }
 
 function Research() {
-  return <section className="research section-pad reveal indexed" id="research" data-index="04" aria-labelledby="research-title">
+  return <section className="research section-pad reveal indexed" id="experience" data-index="04" aria-labelledby="research-title">
     <SectionHeading number="04" label="RESEARCH / CLIMATE SYSTEMS" />
-    <div className="research-layout"><div className="research-heading"><span className="micro-label">ARMY INSTITUTE OF MANAGEMENT KOLKATA / JUN—SEP 2025</span><h2 id="research-title">Finding signal<br />in <em>uncertainty.</em></h2><span className="research-role">RESEARCH INTERN <i>·</i> KOLKATA, INDIA</span></div><div className="research-copy"><p className="research-lead">What can a long climate record reveal about uncertainty?</p><p>I analyzed 50,000+ monthly temperature records across 3,400+ cities and 260+ years. Decision Tree, Random Forest, and XGBoost models were evaluated for climate uncertainty classification.</p><p>XGBoost performed best at capturing non-linear seasonal and geographic patterns. This work became a peer-reviewed research paper presented at the 19th ISDSI-G Conference at IMI Kolkata.</p><div className="model-track"><span>MODEL EVALUATION</span><div><b>DT</b><b>RF</b><b className="model-best">XGB <i>BEST FIT</i></b></div></div></div></div>
+    <div className="research-layout">
+      <div className="research-heading"><span className="micro-label">ARMY INSTITUTE OF MANAGEMENT KOLKATA / JUN&#8212;SEP 2025</span><h2 id="research-title">Finding Climate<br /><em>Uncertainty</em></h2><span className="research-role">RESEARCH INTERN <i>&#183;</i> KOLKATA, INDIA</span></div>
+      <div className="research-copy"><p>I analyzed 50,000+ monthly temperature records across 3,400+ cities and 260+ years. Decision Tree, Random Forest, and XGBoost models were evaluated for climate uncertainty classification.</p><p>XGBoost performed best at capturing non-linear seasonal and geographic patterns. This work became a peer-reviewed research paper presented at the 19th ISDSI-G Conference at IMI Kolkata.</p><a className="research-paper-link" href="https://doi.org/10.64558/bllp/645976nnofrf" target="_blank" rel="noreferrer">VIEW PUBLISHED PAPER <Arrow diagonal /></a><div className="model-track"><span>MODEL EVALUATION</span><div><b>DT</b><b>RF</b><b className="model-best">XGB <i>BEST FIT</i></b></div></div></div>
+    </div>
     <div className="research-stats"><div><b>50K<span>+</span></b><small>MONTHLY RECORDS</small></div><div><b>3,400<span>+</span></b><small>CITIES OBSERVED</small></div><div><b>260<span>+</span></b><small>YEARS OF DATA</small></div><a href="#contact">DISCUSS THE RESEARCH <Arrow diagonal /></a></div>
-    <div className="conference-note"><span>19TH ISDSI-G CONFERENCE · IMI KOLKATA</span><span>PEER-REVIEWED RESEARCH <b>↗</b></span></div>
+    <div className="conference-note"><span>19TH ISDSI-G CONFERENCE &#183; IMI KOLKATA</span></div>
   </section>;
 }
 
