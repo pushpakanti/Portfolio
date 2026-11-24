@@ -1,0 +1,9 @@
+﻿SVG brand files are bundled locally so the page does not depend on third-party requests at runtime.
+
+Brand assets:
+- Simple Icons: https://github.com/simple-icons/simple-icons/tree/develop/icons
+- Java and Visual Studio Code: https://github.com/devicons/devicon/tree/master/icons
+- LangChain and LangGraph: official LangChain brand assets from https://www.langchain.com/brand-assets
+- YOLO: official Ultralytics reverse YOLO logomark from https://github.com/ultralytics/assets/tree/main/logo/discord
+
+The logo assets identify their respective products; trademark and usage rights remain with their owners. SQL has no standalone logo in these libraries and uses a typographic SVG fallback.
