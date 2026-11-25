@@ -60,11 +60,3 @@ npm run preview
 
 The production-ready static site is generated in `dist/`.
 
-## Deploy to Vercel
-
-1. Import the existing GitHub repository into Vercel.
-2. Set the project root to the repository root and select the Vite framework preset.
-3. Use `npm install` as the install command and `npm run build` as the build command. Set the output directory to `dist` if Vercel does not detect it automatically.
-4. Deploy from the configured production branch. Vercel can build each connected Git commit automatically.
-
-No server-side runtime or environment variables are required by this portfolio frontend. Keep any future secrets out of client-side code and Git.
