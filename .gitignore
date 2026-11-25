@@ -1,24 +1,42 @@
 # Dependencies
 node_modules/
 
-# Build files
+# Production and generated output
 dist/
+.vite/
+coverage/
+*.tsbuildinfo
 
-# Environment variables
+# Environment and secrets
 .env
-.env.local
-.env.*.local
+.env.*
+!.env.example
 
-# Logs
+# Logs and package manager debug output
 *.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
 
-# System files
+# Operating system files
 .DS_Store
 Thumbs.db
 
-# Temporary files
-.chrome-check/
+# Editor and IDE settings
+.vscode/
+.idea/
 
-langgraph.png
-my image.png
-pd resume 1.pdf
+# Local caches and browser checks
+.cache/
+.chrome-check/
+.skills-review-final/
+
+# Local deployment configuration
+.vercel/
+
+# Downloaded archives and temporary files
+*.tgz
+*.zip
+*.tmp
+*.bak
+*.swp
