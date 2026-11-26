@@ -195,7 +195,7 @@ function TechnologyLogo({ technology }) {
     'Scikit-learn': ['#F7931E', '#3499CD'], Pandas: ['#150458', '#E70488'], NumPy: ['#4DABCF', '#4D77CF'], OpenCV: ['#5C3EE8', '#E54B4B'],
     YOLO: ['#00A2FF', '#00A2FF'], LangChain: ['#1C3C3C', '#72B8A4'], LangGraph: ['#B6F36A', '#B6F36A'], FastAPI: ['#009688', '#009688'],
     Docker: ['#2496ED', '#2496ED'], Streamlit: ['#FF4B4B', '#FF4B4B'], SQL: ['#D3A62A', '#D3A62A'], Git: ['#F05032', '#F05032'],
-    GitHub: ['#F1F1E9', '#F1F1E9'], Linux: ['#FCC624', '#FCC624'], 'Jupyter Notebook': ['#F37626', '#9E4B99'], 'VS Code': ['#007ACC', '#007ACC'],
+    GitHub: ['#F1F1E9', '#F1F1E9'], 'Jupyter Notebook': ['#F37626', '#9E4B99'], 'VS Code': ['#007ACC', '#007ACC'],
     'Google Colab': ['#F9AB00', '#4285F4'],
   }[technology.name] || ['#B6F36A', '#B6F36A'];
   const [primary, secondary] = colors;
@@ -217,7 +217,6 @@ function TechnologyLogo({ technology }) {
     SQL: <><text x="32" y="39" fill={primary} fontFamily="Arial, sans-serif" fontSize="21" fontWeight="700" letterSpacing="-1" textAnchor="middle">SQL</text><path d="M14 46h36" fill="none" stroke={primary} strokeWidth="3"/></>,
     Git: <><path fill={primary} d="M59 28 36 5a6 6 0 0 0-8 0l-5 5 10 10a7 7 0 0 1 8 9 7 7 0 0 1-9 4L23 23v22a7 7 0 1 1-6 0V22a7 7 0 0 1-2-11L8 16a6 6 0 0 0 0 8l24 24a6 6 0 0 0 8 0l19-19a6 6 0 0 0 0-1Z"/></>,
     GitHub: <><path fill={primary} d="M32 5a27 27 0 0 0-8.5 52.6c1.3.2 1.8-.6 1.8-1.3v-5c-7.3 1.6-8.8-3.1-8.8-3.1-1.2-3-3-3.8-3-3.8-2.4-1.7.2-1.7.2-1.7 2.7.2 4.1 2.8 4.1 2.8 2.4 4.1 6.2 2.9 7.7 2.2.2-1.7 1-2.9 1.8-3.6-5.8-.7-11.9-2.9-11.9-12.9 0-2.9 1-5.2 2.7-7.1-.3-.7-1.2-3.4.3-7 0 0 2.2-.7 7.3 2.7a25 25 0 0 1 13.2 0c5.1-3.4 7.3-2.7 7.3-2.7 1.5 3.6.6 6.3.3 7 1.7 1.9 2.7 4.2 2.7 7.1 0 10-6.1 12.2-12 12.8 1 .9 1.9 2.5 1.9 5v7.3c0 .7.5 1.5 1.8 1.3A27 27 0 0 0 32 5Z"/></>,
-    Linux: <><path fill={primary} d="M32 5c-10 0-13 10-13 21-7 5-10 15-7 23 2 5 7 7 12 4l8-5 8 5c5 3 10 1 12-4 3-8 0-18-7-23C45 15 42 5 32 5Z"/><circle cx="26" cy="25" r="2" fill="#101310"/><circle cx="38" cy="25" r="2" fill="#101310"/><path d="m28 34 4 3 4-3" fill="none" stroke="#101310" strokeWidth="2"/></>,
     'Jupyter Notebook': <><ellipse cx="32" cy="32" rx="25" ry="11" fill="none" stroke={secondary} strokeWidth="4" transform="rotate(-28 32 32)"/><ellipse cx="32" cy="32" rx="25" ry="11" fill="none" stroke={primary} strokeWidth="4" transform="rotate(28 32 32)"/><circle cx="32" cy="32" r="5" fill="#F1F1E9"/><circle cx="14" cy="15" r="4" fill={primary}/><circle cx="51" cy="49" r="4" fill={secondary}/></>,
     'VS Code': <><path fill={primary} d="M48 7 25 28 13 19 6 23v18l7 4 12-9 23 21 10-5V12L48 7ZM15 32l6-5 6 5-6 5-6-5Z"/><path fill="#20A6F7" d="m32 32 20-16v32L32 32Z"/></>,
     'Google Colab': <><path fill="#F9AB00" d="M17 16a20 20 0 0 0 0 32l8-8a9 9 0 0 1 0-16l-8-8Z"/><path fill="#E8710A" d="m17 16 8 8 8 8-8 8-8 8 8 8 8-8 8-8-8-8-8-8-8-8Z"/><path fill="#4285F4" d="M47 16a20 20 0 0 1 0 32l-8-8a9 9 0 0 0 0-16l8-8Z"/></>,
@@ -292,7 +291,6 @@ function Toolkit() {
     { key: 'tools', filter: 'Developer Tools', label: 'DEVELOPER TOOLS', technologies: [
       { name: 'Git', logo: 'git', mark: 'Git', description: 'Version control for tracking and collaborating on code.' },
       { name: 'GitHub', logo: 'github', mark: 'GH', description: 'Platform for hosting code and collaborating.' },
-      { name: 'Linux', logo: 'linux', mark: 'LX', description: 'Open-source operating-system environment.' },
       { name: 'Jupyter Notebook', logo: 'jupyter', mark: 'JN', description: 'Interactive notebooks for code, notes, and data.' },
       { name: 'VS Code', logo: 'vscode', mark: 'VS', description: 'Code editor with extensions and debugging tools.' },
       { name: 'Google Colab', logo: 'googlecolab', mark: 'GC', description: 'Hosted notebooks for writing and running Python.' },
