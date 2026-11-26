@@ -40,7 +40,7 @@ function Header() {
   }, []);
   const navigate = (key) => { setActive(key); setMenuOpen(false); };
   return <header className="topbar">
-    <a className="wordmark" href="#top" aria-label="Pushpakanti Duari, home" onClick={() => navigate('home')}><span className="wordmark-mark">P<span>.</span>D</span><span className="wordmark-caption">PUSHPAKANTI DUARI</span></a>
+    <a className="wordmark" href="#top" aria-label="Pushpakanti Duari, home" onClick={() => navigate('home')}><img className="wordmark-mark" src="/pd-logo-mark.png" alt="" /><span className="wordmark-caption">PUSHPAKANTI DUARI</span></a>
     <nav className={menuOpen ? 'main-nav is-open' : 'main-nav'} aria-label="Main navigation">{navItems.map(([key, href, label]) => <a className={active === key ? 'is-active' : ''} href={href} key={key} onClick={() => navigate(key)}>{label}</a>)}</nav>
     <div className="nav-actions"><a className="nav-icon-link" href={links.github} target="_blank" rel="noreferrer" aria-label="GitHub"><ContactIcon type="github" /></a><a className="nav-icon-link" href={links.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><ContactIcon type="linkedin" /></a><a className="nav-contact" href="#contact" onClick={() => navigate('contact')}>CONTACT <Arrow diagonal /></a></div>
     <button className="nav-menu-toggle" type="button" aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'} aria-expanded={menuOpen} onClick={() => setMenuOpen((open) => !open)}><span /><span /></button>
